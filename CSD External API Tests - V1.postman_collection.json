@@ -1,0 +1,331 @@
+{
+	"info": {
+		"_postman_id": "f2a50e83-3de6-4264-b93b-4b6408ea3d07",
+		"name": "CSD External API Tests - V1",
+		"description": "This collection contains test calls for V1 API's",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Azure OAUTH2 Token For CSD API Calls",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://login.microsoftonline.com/648d2806-c725-4253-8613-b071e1220a57/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"login",
+						"microsoftonline",
+						"com"
+					],
+					"path": [
+						"648d2806-c725-4253-8613-b071e1220a57",
+						"oauth2",
+						"token"
+					]
+				},
+				"description": "This post is to generate a valid OAUTH2 token to be used in the other requests in the collection"
+			},
+			"response": []
+		},
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://services-test.csd.ca.gov/api/ping?text=Hello world",
+					"protocol": "https",
+					"host": [
+						"services-test",
+						"csd",
+						"ca",
+						"gov"
+					],
+					"path": [
+						"api",
+						"ping"
+					],
+					"query": [
+						{
+							"key": "text",
+							"value": "Hello world"
+						}
+					]
+				},
+				"description": "Simple GET request to test API authentication and response functionality"
+			},
+			"response": []
+		},
+		{
+			"name": "Submit JobBatches",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/xml",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<WeatherizationDataTransfer xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" AgencyCode=\"11111\" BatchGUID=\"865749c7-7596-4c15-af9a-2211e52c55b2\" EmailAddress=\"someone@somewhere.com\">\r\n  <LWJobRecord>\r\n<age_18_and_under>1</age_18_and_under>\r\n<application_control_code>LIWP2019-PHIL-0HFYH</application_control_code>\r\n<area_code>555</area_code>\r\n<audit_driven_kwh_savings>0</audit_driven_kwh_savings>\r\n<audit_driven_therm_savings>0</audit_driven_therm_savings>\r\n<audit_id></audit_id>\r\n<building_structure_type_code>BR</building_structure_type_code>\r\n<building_type>SF</building_type>\r\n<census_tract_number>6025011803</census_tract_number>\r\n<cooling_appliance_type_code>NONE</cooling_appliance_type_code>\r\n<disabled>0</disabled>\r\n<dwelling_control_code>7138NFresnsnoSt93720</dwelling_control_code>\r\n<dwelling_tenure>16</dwelling_tenure>\r\n<expenditure_report_period>2019-10</expenditure_report_period>\r\n<eligibility_date>2019-08-01</eligibility_date>\r\n<eligibility_type>HIE</eligibility_type>\r\n<farmworker>0</farmworker>\r\n<first_name>Phil Partial</first_name>\r\n<heating_appliance_type_code>NONE</heating_appliance_type_code>\r\n<heating_energy_type_code>NONE</heating_energy_type_code>\r\n<household_size>2</household_size>\r\n<job_assessment_date>2019-08-01</job_assessment_date>\r\n<job_completed_date>2019-08-01</job_completed_date>\r\n<job_control_code>a0g55000000hFyHAAU</job_control_code>\r\n<last_name>Test</last_name>\r\n<leveraged_program>None</leveraged_program>\r\n<leveraged_health_and_safety>0</leveraged_health_and_safety>\r\n<leveraged_home_repair>0</leveraged_home_repair>\r\n<leveraged_other_energy_efficiency>0.00</leveraged_other_energy_efficiency>\r\n<limited_english>0</limited_english>\r\n<mail_address>7138 N Fresno St</mail_address>\r\n<mail_apt_unit_number></mail_apt_unit_number>\r\n<mail_city>Fresno</mail_city>\r\n<mail_state_code>CA</mail_state_code>\r\n<mail_zip_code>937202905</mail_zip_code>\r\n<monthly_income>1500.00</monthly_income>\r\n<native_american>0</native_american>\r\n<age_60_or_over>0</age_60_or_over>\r\n<package_sir>0</package_sir>\r\n<phone>4569874</phone>\r\n<pos_address>7138 N Fresno St</pos_address>\r\n<pos_apt_unit_number></pos_apt_unit_number>\r\n<pos_city>Fresno</pos_city>\r\n<pos_county_code>10</pos_county_code>\r\n<pos_state_code>CA</pos_state_code>\r\n<pos_zip_code>937202905</pos_zip_code>\r\n<recordset_type>LWX</recordset_type>\r\n<tenant_type>OWN</tenant_type>\r\n<utility_account_number_electric>2123456789</utility_account_number_electric>\r\n<utility_account_number_gas>12345678901234</utility_account_number_gas>\r\n<utility_company_code_electric>C</utility_company_code_electric>\r\n<utility_company_code_gas>B</utility_company_code_gas>\r\n<utility_information_release_consent>BOTH</utility_information_release_consent>\r\n<utility_service_address_id_electric>7138 N Fresno St</utility_service_address_id_electric>\r\n<utility_service_address_id_gas>7138 N Fresno St</utility_service_address_id_gas>\r\n<water_heating_appliance_type_code>NONE</water_heating_appliance_type_code>\r\n<water_heating_energy_type_code>NONE</water_heating_energy_type_code>\r\n<year_built>1999</year_built>\r\n<MeasureRecord>\r\n<measure_control_code>2019-09-05 17:09:13Z-a0c55000001pVy3</measure_control_code>\r\n<ra_contract_number>19B-1234</ra_contract_number>\r\n<measure_existing_capacity>0</measure_existing_capacity>\r\n<measure_new_capacity>0</measure_new_capacity>\r\n<measure_code>100</measure_code>\r\n<measure_count>1</measure_count>\r\n<measure_existing_efficiency>0</measure_existing_efficiency>\r\n<measure_new_efficiency>1</measure_new_efficiency>\r\n<measure_reimbursement_amount>2</measure_reimbursement_amount>\r\n<measure_non_feasibility_code></measure_non_feasibility_code>\r\n<measure_leveraging_type>OTHER</measure_leveraging_type>\r\n<measure_installation_cost>0</measure_installation_cost>\r\n<measure_installation_date>2019-09-01</measure_installation_date>\r\n<measure_leveraged_amount>0</measure_leveraged_amount>\r\n<measure_report_group>200</measure_report_group>\r\n<measure_sir>0</measure_sir>\r\n<measure_type_code>1</measure_type_code>\r\n<fuel_switch_measure>0</fuel_switch_measure>\r\n<subprogram_code>LIWP</subprogram_code>\r\n</MeasureRecord>\r\n</LWJobRecord>\r\n</WeatherizationDataTransfer>"
+				},
+				"url": {
+					"raw": "https://services-test.csd.ca.gov/api/weatherization/jobbatches",
+					"protocol": "https",
+					"host": [
+						"services-test",
+						"csd",
+						"ca",
+						"gov"
+					],
+					"path": [
+						"api",
+						"weatherization",
+						"jobbatches"
+					]
+				},
+				"description": "POST submission for CSD's weatherization API of JobBatches"
+			},
+			"response": []
+		},
+		{
+			"name": "Request JobBatches (aka Fetch Batch Status)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://services-test.csd.ca.gov/api/weatherization/jobbatches?agencyCode=11111&fromDate=2019-01-01&toDate=2019-01-01",
+					"protocol": "https",
+					"host": [
+						"services-test",
+						"csd",
+						"ca",
+						"gov"
+					],
+					"path": [
+						"api",
+						"weatherization",
+						"jobbatches"
+					],
+					"query": [
+						{
+							"key": "agencyCode",
+							"value": "11111"
+						},
+						{
+							"key": "fromDate",
+							"value": "2019-01-01"
+						},
+						{
+							"key": "toDate",
+							"value": "2019-01-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request Jobs (aka Fetch Job Status)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://services-test.csd.ca.gov/api/weatherization/jobs?agencyCode=11111&reportPeriod=2019-09",
+					"protocol": "https",
+					"host": [
+						"services-test",
+						"csd",
+						"ca",
+						"gov"
+					],
+					"path": [
+						"api",
+						"weatherization",
+						"jobs"
+					],
+					"query": [
+						{
+							"key": "agencyCode",
+							"value": "11111"
+						},
+						{
+							"key": "reportPeriod",
+							"value": "2019-09"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request Approval Activities (aka Fetch Approval Activities)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://services-test.csd.ca.gov/api/weatherization/approvalactivities?agencyCode=11111&fromDate=2019-01-01&toDate=2019-01-01",
+					"protocol": "https",
+					"host": [
+						"services-test",
+						"csd",
+						"ca",
+						"gov"
+					],
+					"path": [
+						"api",
+						"weatherization",
+						"approvalactivities"
+					],
+					"query": [
+						{
+							"key": "agencyCode",
+							"value": "11111"
+						},
+						{
+							"key": "fromDate",
+							"value": "2019-01-01"
+						},
+						{
+							"key": "toDate",
+							"value": "2019-01-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request JobProgramMeasures (aka Fetch Job Program Measures)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://services-test.csd.ca.gov/api/weatherization/jobprogrammeasures?agencyCode=11111&agencyContract&programCode&reportPeriod=2019-01&adjustmentNumber",
+					"protocol": "https",
+					"host": [
+						"services-test",
+						"csd",
+						"ca",
+						"gov"
+					],
+					"path": [
+						"api",
+						"weatherization",
+						"jobprogrammeasures"
+					],
+					"query": [
+						{
+							"key": "agencyCode",
+							"value": "11111"
+						},
+						{
+							"key": "agencyContract",
+							"value": null
+						},
+						{
+							"key": "programCode",
+							"value": null
+						},
+						{
+							"key": "reportPeriod",
+							"value": "2019-01"
+						},
+						{
+							"key": "adjustmentNumber",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
