@@ -132,6 +132,9 @@
 		},
 		{
 			"name": "Request JobBatches (aka Fetch Batch Status)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -146,6 +149,10 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "https://services-test.csd.ca.gov/api/weatherization/jobbatches?agencyCode=11111&fromDate=2019-01-01&toDate=2019-01-01",
 					"protocol": "https",
